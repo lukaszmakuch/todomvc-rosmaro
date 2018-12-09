@@ -1,0 +1,430 @@
+{
+  "Components_Controls_MarkAll_Unchecked": {
+    "type": "leaf"
+  },
+  "Components_Controls_MarkAll_Checked": {
+    "type": "leaf"
+  },
+  "Components_Controls_MarkAll": {
+    "type": "graph",
+    "nodes": {
+      "Unchecked": "Components_Controls_MarkAll_Unchecked",
+      "Checked": "Components_Controls_MarkAll_Checked"
+    },
+    "arrows": {
+      "Unchecked": {
+        "all are completed": {
+          "target": "Checked",
+          "entryPoint": "start"
+        }
+      },
+      "Checked": {
+        "not all are completed": {
+          "target": "Unchecked",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Unchecked",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_Controls_ClearCompleted_Hidden": {
+    "type": "leaf"
+  },
+  "Components_Controls_ClearCompleted_Visible": {
+    "type": "leaf"
+  },
+  "Components_Controls_ClearCompleted": {
+    "type": "graph",
+    "nodes": {
+      "Hidden": "Components_Controls_ClearCompleted_Hidden",
+      "Visible": "Components_Controls_ClearCompleted_Visible"
+    },
+    "arrows": {
+      "Hidden": {
+        "some are completed": {
+          "target": "Visible",
+          "entryPoint": "start"
+        }
+      },
+      "Visible": {
+        "none are completed": {
+          "target": "Hidden",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Hidden",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_Controls_Navigation_Buttons_All": {
+    "type": "leaf"
+  },
+  "Components_Controls_Navigation_Buttons_Active": {
+    "type": "leaf"
+  },
+  "Components_Controls_Navigation_Buttons_Completed": {
+    "type": "leaf"
+  },
+  "Components_Controls_Navigation_Buttons": {
+    "type": "graph",
+    "nodes": {
+      "All": "Components_Controls_Navigation_Buttons_All",
+      "Active": "Components_Controls_Navigation_Buttons_Active",
+      "Completed": "Components_Controls_Navigation_Buttons_Completed"
+    },
+    "arrows": {},
+    "entryPoints": {
+      "start": {
+        "target": "All",
+        "entryPoint": "start"
+      },
+      "navigated to all": {
+        "target": "All",
+        "entryPoint": "start"
+      },
+      "navigated to completed": {
+        "target": "Completed",
+        "entryPoint": "start"
+      },
+      "navigated to active": {
+        "target": "Active",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_Controls_Navigation": {
+    "type": "graph",
+    "nodes": {
+      "Buttons": "Components_Controls_Navigation_Buttons"
+    },
+    "arrows": {
+      "Buttons": {
+        "navigated to all": {
+          "target": "Buttons",
+          "entryPoint": "navigated to all"
+        },
+        "navigated to completed": {
+          "target": "Buttons",
+          "entryPoint": "navigated to completed"
+        },
+        "navigated to active": {
+          "target": "Buttons",
+          "entryPoint": "navigated to active"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Buttons",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_Controls": {
+    "type": "composite",
+    "nodes": {
+      "MarkAll": "Components_Controls_MarkAll",
+      "ClearCompleted": "Components_Controls_ClearCompleted",
+      "Navigation": "Components_Controls_Navigation"
+    }
+  },
+  "Components_NewTodoForm_Empty": {
+    "type": "leaf"
+  },
+  "Components_NewTodoForm_FilledIn": {
+    "type": "leaf"
+  },
+  "Components_NewTodoForm": {
+    "type": "graph",
+    "nodes": {
+      "Empty": "Components_NewTodoForm_Empty",
+      "FilledIn": "Components_NewTodoForm_FilledIn"
+    },
+    "arrows": {
+      "Empty": {
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        },
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        }
+      },
+      "FilledIn": {
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        },
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Empty",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View_Todo_Completed_Displaying": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_Completed_Editing_Empty": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_Completed_Editing_FilledIn": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_Completed_Editing": {
+    "type": "graph",
+    "nodes": {
+      "Empty": "Components_List_View_Todo_Completed_Editing_Empty",
+      "FilledIn": "Components_List_View_Todo_Completed_Editing_FilledIn"
+    },
+    "arrows": {
+      "Empty": {
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        },
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        }
+      },
+      "FilledIn": {
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        },
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "FilledIn",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View_Todo_Completed": {
+    "type": "graph",
+    "nodes": {
+      "Displaying": "Components_List_View_Todo_Completed_Displaying",
+      "Editing": "Components_List_View_Todo_Completed_Editing"
+    },
+    "arrows": {
+      "Displaying": {
+        "started editing": {
+          "target": "Editing",
+          "entryPoint": "start"
+        }
+      },
+      "Editing": {
+        "finished editing": {
+          "target": "Displaying",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Displaying",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View_Todo_NotCompleted_Displaying": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_NotCompleted_Editing_Empty": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_NotCompleted_Editing_FilledIn": {
+    "type": "leaf"
+  },
+  "Components_List_View_Todo_NotCompleted_Editing": {
+    "type": "graph",
+    "nodes": {
+      "Empty": "Components_List_View_Todo_NotCompleted_Editing_Empty",
+      "FilledIn": "Components_List_View_Todo_NotCompleted_Editing_FilledIn"
+    },
+    "arrows": {
+      "FilledIn": {
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        },
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        }
+      },
+      "Empty": {
+        "changed": {
+          "target": "FilledIn",
+          "entryPoint": "start"
+        },
+        "cleared": {
+          "target": "Empty",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "FilledIn",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View_Todo_NotCompleted": {
+    "type": "graph",
+    "nodes": {
+      "Displaying": "Components_List_View_Todo_NotCompleted_Displaying",
+      "Editing": "Components_List_View_Todo_NotCompleted_Editing"
+    },
+    "arrows": {
+      "Displaying": {
+        "started editing": {
+          "target": "Editing",
+          "entryPoint": "start"
+        }
+      },
+      "Editing": {
+        "finished editing": {
+          "target": "Displaying",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "Displaying",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View_Todo": {
+    "type": "graph",
+    "nodes": {
+      "Completed": "Components_List_View_Todo_Completed",
+      "NotCompleted": "Components_List_View_Todo_NotCompleted"
+    },
+    "arrows": {
+      "NotCompleted": {
+        "marked as completed": {
+          "target": "Completed",
+          "entryPoint": "start"
+        }
+      },
+      "Completed": {
+        "marked as not completed": {
+          "target": "NotCompleted",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "NotCompleted",
+        "entryPoint": "start"
+      },
+      "history": {
+        "target": "recent",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components_List_View": {
+    "type": "dynamicComposite",
+    "child": "Components_List_View_Todo"
+  },
+  "Components_List": {
+    "type": "graph",
+    "nodes": {
+      "View": "Components_List_View"
+    },
+    "arrows": {
+      "View": {
+        "added a todo": {
+          "target": "View",
+          "entryPoint": "history"
+        },
+        "removed a todo": {
+          "target": "View",
+          "entryPoint": "history"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "View",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "Components": {
+    "type": "composite",
+    "nodes": {
+      "Controls": "Components_Controls",
+      "NewTodoForm": "Components_NewTodoForm",
+      "List": "Components_List"
+    }
+  },
+  "Layout_JustForm": {
+    "type": "leaf"
+  },
+  "Layout_WholeApp": {
+    "type": "leaf"
+  },
+  "Layout": {
+    "type": "graph",
+    "nodes": {
+      "JustForm": "Layout_JustForm",
+      "WholeApp": "Layout_WholeApp"
+    },
+    "arrows": {
+      "JustForm": {
+        "there is at least one todo": {
+          "target": "WholeApp",
+          "entryPoint": "start"
+        }
+      },
+      "WholeApp": {
+        "no todos left": {
+          "target": "JustForm",
+          "entryPoint": "start"
+        }
+      }
+    },
+    "entryPoints": {
+      "start": {
+        "target": "JustForm",
+        "entryPoint": "start"
+      }
+    }
+  },
+  "main": {
+    "type": "composite",
+    "nodes": {
+      "Components": "Components",
+      "Layout": "Layout"
+    }
+  }
+}

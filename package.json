@@ -1,7 +1,29 @@
 {
   "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel --no-hmr index.html ",
+    "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings"
+  },
   "dependencies": {
+    "navigo": "^7.1.2",
+    "parcel-bundler": "^1.10.3",
+    "pluralize": "^7.0.0",
+    "ramda": "^0.26.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.6",
+    "redux-saga": "^0.16.2",
+    "rosmaro": "^0.8.3",
+    "rosmaro-binding-utils": "0.0.6",
+    "rosmaro-redux": "0.0.3",
+    "rosmaro-tools": "0.0.3",
+    "snabbdom": "^0.7.2",
+    "snabbdom-signature": "0.0.2",
     "todomvc-app-css": "^2.0.0",
-    "todomvc-common": "^1.0.0"
+    "todomvc-common": "^1.0.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "cross-env": "^5.2.0"
   }
 }
