@@ -1,5 +1,5 @@
 import {defaultHandler} from 'rosmaro-binding-utils';
-import {lens, update, find, reject, isEmpty, prop, propEq, findIndex, trim, pipe, omit} from 'ramda';
+import {lens, update, find, propEq, findIndex} from 'ramda';
 
 export default ({}) => ({
 

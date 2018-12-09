@@ -52,10 +52,7 @@ export default ({}) => ({
 
     TODO_ADD: ({context, action: {content}}) => {
       const newId = context.lastId + 1;
-      const todo = {
-        content,
-        id: newId,
-      };
+      const todo = {content, id: newId};
       return {
         arrow: 'added a todo',
         context: {

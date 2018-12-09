@@ -1,22 +1,12 @@
-import {h} from '~/js/utils/vdom';
 import {makeHandler} from '~/js/utils/handlers';
+import {RENDER} from './../lib/view';
 
 export default ({dispatch}) => ({
 
   handler: makeHandler({
 
     ALL_TODOS_COMPLETED: () => ({arrow: 'all are completed'}),
-
-    RENDER: () =>
-      [
-        h('input#toggle-all.toggle-all', {
-          props: {type: 'checkbox', checked: false},
-          on: {
-            change: ({target: {checked}}) => dispatch({type: 'MARK_COMPLETED'}),
-          }
-        }),
-        h('label', {attrs: {for: 'toggle-all'}}, 'Mark all as complete'),
-      ]
+    RENDER: RENDER({dispatch, checked: false, ON_CHANGE: 'MARK_COMPLETED'}),
 
   })
 

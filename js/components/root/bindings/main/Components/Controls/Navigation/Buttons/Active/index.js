@@ -1,4 +1,4 @@
-import {allTodosButton, completedTodosButton, activeTodosButton, makeBinding} from './../templates';
+import {allTodosButton, completedTodosButton, activeTodosButton, makeBinding} from './../lib/templates';
 
 export default makeBinding({
   selected: 'active',
