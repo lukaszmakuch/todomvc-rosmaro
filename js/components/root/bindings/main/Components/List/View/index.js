@@ -1,6 +1,6 @@
-import {defaultHandler, callChildren, sliceLens, initialValueLens} from 'rosmaro-binding-utils';
+import {callChildren, sliceLens, initialValueLens} from 'rosmaro-binding-utils';
 import {makeHandler} from '~/js/utils/handlers';
-import {keys, reverse, map, prop, reduce, compose, reject, findIndex, propEq, values, without, countBy, identity, pipe} from 'ramda';
+import {keys, filter, flatten, complement, isNil, reverse, map, prop, reduce, compose, reject, findIndex, propEq, values, without, countBy, identity, pipe} from 'ramda';
 import {h} from '~/js/utils/vdom';
 import pluralize from 'pluralize';
 
@@ -33,6 +33,26 @@ const buildEffects = stats => {
   return [{type: 'DISPATCH', action: {type: 'NO_TODOS'}}];
 };
 
+const TRANSPARENT_WITH_EVENTS = ({context, action, children}) => {
+  const childrenResults = callChildren({context, action, children});
+
+  const effect = pipe(
+    values,
+    filter(complement(isNil)),
+    map(prop('effect')),
+    filter(complement(isNil))
+  )(childrenResults.result);
+
+  return {
+    ...childrenResults,
+    result: {
+      data: childrenResults.result,
+      effect: [...flatten(effect), {type: 'DISPATCH', action: {type: 'DISPATCH_EVENTS'}}],
+    }
+  };
+
+};
+
 export default ({}) => ({
 
   nodes: ({context: {todos}}) => map(prop('id'))(todos),
@@ -63,6 +83,10 @@ export default ({}) => ({
         effect: {type: 'DISPATCH', action: {type: 'DISPATCH_EVENTS'}}
       };
     },
+
+    TOGGLE: TRANSPARENT_WITH_EVENTS,
+    MARK_NOT_COMPLETED: TRANSPARENT_WITH_EVENTS,
+    MARK_COMPLETED: TRANSPARENT_WITH_EVENTS,
 
     TODO_REMOVE: ({context, action: {id}}) => ({
       arrow: 'removed a todo',

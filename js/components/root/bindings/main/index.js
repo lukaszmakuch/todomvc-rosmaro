@@ -11,9 +11,9 @@ export default () => ({
     RENDER: ({context, action, children}) => {
       const childrenResult = callChildren({context, action, children});
       const layout = childrenResult.result.Layout.data;
-      const newTodoForm = childrenResult.result.Components.data.NewTodoForm.data;
-      const list = childrenResult.result.Components.data.List.data;
-      const controls = childrenResult.result.Components.data.Controls.data;
+      const newTodoForm = childrenResult.result.Components.data.NewTodoForm;
+      const list = childrenResult.result.Components.data.List;
+      const controls = childrenResult.result.Components.data.Controls;
       return layout({newTodoForm, list, controls});
     }
   

@@ -1,4 +1,4 @@
-import {defaultHandler} from 'rosmaro-binding-utils';
+import {transparentHandler} from '~/js/utils/handlers';
 import {lens, update, find, propEq, findIndex} from 'ramda';
 
 export default ({}) => ({
@@ -14,6 +14,6 @@ export default ({}) => ({
       )
   },
     
-  handler: defaultHandler,
+  handler: transparentHandler,
 
 });

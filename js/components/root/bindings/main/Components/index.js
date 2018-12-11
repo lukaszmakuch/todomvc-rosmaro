@@ -1,5 +1,5 @@
-import {makeHandler} from '~/js/utils/handlers';
+import {defaultHandler} from 'rosmaro-binding-utils';
 
 export default ({dispatch}) => ({
-  handler: makeHandler({})
+  handler: defaultHandler
 });

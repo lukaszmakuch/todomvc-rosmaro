@@ -1,4 +1,4 @@
-import {callChildren} from 'rosmaro-binding-utils';
+import {callChildren} from '~/js/utils/handlers';
 import {h} from '~/js/utils/vdom';
 import {map, prop} from 'ramda';
 import {makeHandler} from '~/js/utils/handlers';

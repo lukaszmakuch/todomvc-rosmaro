@@ -1,15 +1,9 @@
 import {makeHandler} from '~/js/utils/handlers';
 import {h} from '~/js/utils/vdom';
 
-export const MARK_COMPLETED = () => ({
-  arrow: 'marked as completed',
-  effect: {type: 'DISPATCH', action: {type: 'DISPATCH_EVENTS'}}
-});
+export const MARK_COMPLETED = () => ({arrow: 'marked as completed'});
 
-export const MARK_NOT_COMPLETED = () => ({
-  arrow: 'marked as not completed',
-  effect: {type: 'DISPATCH', action: {type: 'DISPATCH_EVENTS'}}
-});
+export const MARK_NOT_COMPLETED = () => ({arrow: 'marked as not completed'});
 
 export const RENDER = ({classes, checked}) => ({dispatch}) => ({toNode, context}) => 
   h('li', {class: classes}, [

@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development parcel --no-hmr index.html ",
+    "build": "parcel build index.html ",
     "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings"
   },
   "dependencies": {
@@ -13,7 +14,7 @@
     "redux-devtools-extension": "^2.13.6",
     "redux-saga": "^0.16.2",
     "rosmaro": "^0.8.3",
-    "rosmaro-binding-utils": "0.0.6",
+    "rosmaro-binding-utils": "0.0.9",
     "rosmaro-redux": "0.0.3",
     "rosmaro-tools": "0.0.3",
     "snabbdom": "^0.7.2",

@@ -9,7 +9,6 @@ export default ({dispatch}) => ({
 
     ALL_TODOS_COMPLETED: someCompleted,
     SOME_TODOS_COMPLETED: someCompleted,
-
     RENDER: () => ''
 
   })

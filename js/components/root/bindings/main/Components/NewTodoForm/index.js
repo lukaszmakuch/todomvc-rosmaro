@@ -1,4 +1,4 @@
-import {defaultHandler} from 'rosmaro-binding-utils';
+import {transparentHandler} from '~/js/utils/handlers';
 import {initialValueLens, sliceLens} from 'rosmaro-binding-utils';
 import {compose} from 'ramda';
 
@@ -7,5 +7,5 @@ export default opts => ({
     sliceLens('newTodoForm'), 
     initialValueLens({content: ''}
   )),
-  handler: defaultHandler,
+  handler: transparentHandler,
 });

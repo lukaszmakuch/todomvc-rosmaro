@@ -1,5 +1,3 @@
-import {defaultHandler} from 'rosmaro-binding-utils';
+import {transparentHandler} from '~/js/utils/handlers';
 
-export default opts => ({
-  handler: defaultHandler,
-});
+export default opts => ({handler: transparentHandler});
