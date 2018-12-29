@@ -249,20 +249,20 @@
       }
     }
   },
-  "Components_List_View_Todo_NotCompleted_Displaying": {
+  "Components_List_View_Todo_Active_Displaying": {
     "type": "leaf"
   },
-  "Components_List_View_Todo_NotCompleted_Editing_Empty": {
+  "Components_List_View_Todo_Active_Editing_Empty": {
     "type": "leaf"
   },
-  "Components_List_View_Todo_NotCompleted_Editing_FilledIn": {
+  "Components_List_View_Todo_Active_Editing_FilledIn": {
     "type": "leaf"
   },
-  "Components_List_View_Todo_NotCompleted_Editing": {
+  "Components_List_View_Todo_Active_Editing": {
     "type": "graph",
     "nodes": {
-      "Empty": "Components_List_View_Todo_NotCompleted_Editing_Empty",
-      "FilledIn": "Components_List_View_Todo_NotCompleted_Editing_FilledIn"
+      "Empty": "Components_List_View_Todo_Active_Editing_Empty",
+      "FilledIn": "Components_List_View_Todo_Active_Editing_FilledIn"
     },
     "arrows": {
       "FilledIn": {
@@ -293,11 +293,11 @@
       }
     }
   },
-  "Components_List_View_Todo_NotCompleted": {
+  "Components_List_View_Todo_Active": {
     "type": "graph",
     "nodes": {
-      "Displaying": "Components_List_View_Todo_NotCompleted_Displaying",
-      "Editing": "Components_List_View_Todo_NotCompleted_Editing"
+      "Displaying": "Components_List_View_Todo_Active_Displaying",
+      "Editing": "Components_List_View_Todo_Active_Editing"
     },
     "arrows": {
       "Displaying": {
@@ -324,25 +324,25 @@
     "type": "graph",
     "nodes": {
       "Completed": "Components_List_View_Todo_Completed",
-      "NotCompleted": "Components_List_View_Todo_NotCompleted"
+      "Active": "Components_List_View_Todo_Active"
     },
     "arrows": {
-      "NotCompleted": {
+      "Active": {
         "marked as completed": {
           "target": "Completed",
           "entryPoint": "start"
         }
       },
       "Completed": {
-        "marked as not completed": {
-          "target": "NotCompleted",
+        "marked as active": {
+          "target": "Active",
           "entryPoint": "start"
         }
       }
     },
     "entryPoints": {
       "start": {
-        "target": "NotCompleted",
+        "target": "Active",
         "entryPoint": "start"
       },
       "history": {
