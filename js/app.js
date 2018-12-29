@@ -48,7 +48,7 @@ dispatchFn = store.dispatch;
 const container = document.getElementById('app-root');
 
 let lastView = container;
-const renderAction = {type: 'RENDER'};
+const renderAction = {type: 'RENDER', dispatch: store.dispatch};
 const refreshView = () => {
   const {state} = store.getState();
   const newView = model({state, action: renderAction}).result.data;

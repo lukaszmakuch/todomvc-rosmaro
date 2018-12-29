@@ -16,11 +16,11 @@ export default ({name}) => ({
           h('h1', 'todos'),
           newTodoForm,
         ]),
-        h('section.main', [
+        h('section.main', {attrs: {'data-testid': 'main'}}, [
           ...controls.MarkAll,
           list.list(controls.Navigation.selectTodos)
         ]),
-        h('footer.footer', [
+        h('footer.footer', {attrs: {'data-testid': 'footer'}}, [
           list.counter,
           controls.Navigation.ui,
           controls.ClearCompleted,

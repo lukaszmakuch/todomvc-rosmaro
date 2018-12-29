@@ -41,7 +41,10 @@ export const makeBinding = ({FINISH}) => ({dispatch}) => ({
             },
             on: {
               blur: finish,
-              keydown: ({key}) => { if (key === "Enter") finish(); },
+              keydown: ({key}) => { 
+                if (key === "Enter") finish();
+                if (key === "Escape") dispatch(toNode({type: 'DISCARD'}));
+              },
               input: ({target: {value}}) => dispatch(toNode({type: 'TYPE', value}))
             }
           })
