@@ -5,7 +5,10 @@ import {trim} from 'ramda';
 export const ADD = ({context: {content}}) => ({
   context: {content: ''},
   arrow: 'cleared',
-  effect: [{type: 'DISPATCH', action: {type: 'TODO_ADD', content}}],
+  effect: [{
+    type: 'DISPATCH', 
+    action: {type: 'TODO_ADD', content: trim(content)}
+  }],
 });
 
 export const makeBinding = ({ADD}) => ({dispatch}) => ({
@@ -31,9 +34,8 @@ export const makeBinding = ({ADD}) => ({dispatch}) => ({
         }
       }),
 
-    TYPE: ({action: {value}, context}) => {
-      const content = trim(value);
-      const arrow = content ? 'changed' : 'cleared';
+    TYPE: ({action: {value: content}, context}) => {
+      const arrow = trim(content) ? 'changed' : 'cleared';
       return {
         arrow: arrow,
         context: {...context, content}
