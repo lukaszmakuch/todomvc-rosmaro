@@ -7,6 +7,7 @@ import {patch} from '~/js/utils/vdom';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import Navigo from 'navigo';
+import throttle from 'lodash.throttle';
 
 const storageKey = 'rosmaro-todomvc';
 const storage = {
@@ -56,10 +57,10 @@ const refreshView = () => {
   lastView = newView;
 };
 
-const persist = () => {
+const persist = throttle(() => {
   const {state} = store.getState();
   storage.store(model({state, action: {type: 'PREPARE_FOR_PERSISTENCE'}}));
-};
+}, 1000);
 
 store.subscribe(refreshView);
 store.subscribe(persist);
@@ -67,7 +68,6 @@ store.subscribe(persist);
 refreshView();
 
 let router = new Navigo(null, true, '#');
-// consider moving it closer to the consuming code
 router
   .on('/', () => dispatchFn({type: 'NAVIGATE_TO_ALL'}))
   .on('/active', () => dispatchFn({type: 'NAVIGATE_TO_ACTIVE'}))
