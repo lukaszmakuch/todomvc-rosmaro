@@ -7,20 +7,17 @@
     "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings"
   },
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
     "navigo": "^7.1.2",
     "parcel-bundler": "^1.10.3",
     "pluralize": "^7.0.0",
     "ramda": "^0.26.0",
     "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.6",
     "redux-saga": "^0.16.2",
-    "rosmaro": "^0.8.3",
+    "rosmaro": "^0.8.4",
     "rosmaro-binding-utils": "0.0.9",
     "rosmaro-redux": "0.0.3",
-    "rosmaro-tools": "0.0.3",
     "snabbdom": "^0.7.2",
-    "rosmaro-testing-library": "file://../rosmaro-testing-library",
-    "snabbdom-testing-library": "file://../snabbdom-testing-library",
     "snabbdom-signature": "0.0.2",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0",
@@ -31,7 +28,11 @@
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
     "jest-dom": "^3.0.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-devtools-extension": "^2.13.6",
+    "redux-mock-store": "^1.5.3",
+    "rosmaro-testing-library": "0.0.1",
+    "rosmaro-tools": "0.0.3",
+    "snabbdom-testing-library": "0.0.1"
   },
   "jest": {
     "moduleNameMapper": {
