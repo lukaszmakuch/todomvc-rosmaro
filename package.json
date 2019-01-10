@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=development parcel --no-hmr index.html ",
-    "build": "parcel build index.html ",
+    "build": "parcel build index.html --public-url /todomvc-rosmaro",
     "test": "jest --watch",
     "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings"
   },
