@@ -11,6 +11,8 @@ It's all about associating functions with (state machine) graph nodes.
 
 ### Articles
 
+- [Decomposing the TodoMVC app with state diagrams](https://lukaszmakuch.pl/post/decomposing-the-todomvc-app-with-state-diagrams/)
+
 - [A JavaScript framework for functions of state and action](https://lukaszmakuch.pl/post/a-javascript-framework-for-functions-of-state-and-action/)
 
 ### Support
