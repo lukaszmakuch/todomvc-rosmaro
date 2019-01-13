@@ -2,9 +2,7 @@ import {callChildren, initialValueLens} from 'rosmaro-binding-utils';
 import {h} from '~/js/utils/vdom';
 import {makeHandler} from '~/js/utils/handlers';
 
-const atLeastOne = () => {
-  return ({arrow: 'there is at least one todo'})
-};
+const atLeastOne = () => ({arrow: 'there is at least one todo'});
 
 export default ({name}) => ({
 

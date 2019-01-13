@@ -10,7 +10,7 @@ export default ({name}) => ({
 
     NO_TODOS: noTodos,
 
-    RENDER: ({context, action, children}) => ({newTodoForm, list, controls}) => 
+    RENDER: () => ({newTodoForm, list, controls}) => 
       h('section.todoapp', [
         h('header.header', [
           h('h1', 'todos'),
