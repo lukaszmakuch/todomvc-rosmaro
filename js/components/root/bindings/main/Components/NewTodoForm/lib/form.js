@@ -15,8 +15,6 @@ export const makeBinding = ({ADD}) => ({dispatch}) => ({
 
   handler: makeHandler({
 
-    ADD,
-
     RENDER: ({toNode, context}) =>
       h('input.new-todo', {
         props: {
@@ -41,6 +39,8 @@ export const makeBinding = ({ADD}) => ({dispatch}) => ({
         context: {...context, content}
       };
     },
+
+    ADD,
 
   })
 
