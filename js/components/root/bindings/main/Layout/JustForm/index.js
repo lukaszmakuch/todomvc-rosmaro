@@ -12,7 +12,7 @@ export default ({name}) => ({
     SOME_TODOS_COMPLETED: atLeastOne,
     NO_TODOS_COMPLETED: atLeastOne,
 
-    RENDER: ({context, action, children}) => ({newTodoForm, list, controls}) => 
+    RENDER: () => ({newTodoForm, list, controls}) => 
       h('section.todoapp', [
         h('header.header', [
           h('h1', 'todos'),
