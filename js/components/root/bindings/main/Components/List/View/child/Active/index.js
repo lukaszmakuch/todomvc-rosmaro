@@ -1,6 +1,6 @@
 import {makeBindings} from './../lib/filtering';
 
 export default makeBindings({
-  state: 'notCompleted',
+  state: 'active',
   renderWhen: ['all', 'active'],
 });

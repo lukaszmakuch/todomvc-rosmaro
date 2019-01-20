@@ -13,12 +13,12 @@ const readStats = ({context, children}) => {
     reduce((soFar, state) => ({
       ...soFar,
       [state]: soFar[state] + 1
-    }), {notCompleted: 0, completed: 0})
+    }), {active: 0, completed: 0})
   )(values(childrenResults.result));
 };
 
 const buildEffects = stats => {
-  if (stats.completed && !stats.notCompleted) {
+  if (stats.completed && !stats.active) {
     return [{type: 'DISPATCH', action: {type: 'ALL_TODOS_COMPLETED'}}];
   }
 
@@ -26,7 +26,7 @@ const buildEffects = stats => {
     return [{type: 'DISPATCH', action: {type: 'SOME_TODOS_COMPLETED'}}];
   }
 
-  if (stats.notCompleted) {
+  if (stats.active) {
     return [{type: 'DISPATCH', action: {type: 'NO_TODOS_COMPLETED'}}];
   }
 
@@ -105,10 +105,10 @@ export default ({}) => ({
         selectTodos,
         reverse
       )(childrenResults.result));
-      const numerOfNotCompleted = readStats({context, children}).notCompleted;
+      const numerOfActive = readStats({context, children}).active;
       const counter = h('span.todo-count', [
-        h('strong', numerOfNotCompleted),
-        ` ${pluralize('item', numerOfNotCompleted)} left`
+        h('strong', numerOfActive),
+        ` ${pluralize('item', numerOfActive)} left`
       ])
       return {list, counter};
     },
