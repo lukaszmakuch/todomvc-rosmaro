@@ -29,9 +29,7 @@ export const makeBinding = ({selected, buttons: {allTodosButton, completedTodosB
   handler: makeHandler({
 
     NAVIGATE_TO_ALL: () => ({arrow: 'navigated to all'}),
-
     NAVIGATE_TO_COMPLETED: () => ({arrow: 'navigated to completed'}),
-
     NAVIGATE_TO_ACTIVE: () => ({arrow: 'navigated to active'}),
 
     RENDER: ({context, action, children}) => ({
