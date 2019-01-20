@@ -13,6 +13,8 @@ It's all about associating functions with (state machine) graph nodes.
 
 - [Decomposing the TodoMVC app with state diagrams](https://lukaszmakuch.pl/post/decomposing-the-todomvc-app-with-state-diagrams/)
 
+- [An overview of the Rosmaro-TodoMVC app codebase](https://lukaszmakuch.pl/post/an-overview-of-the-rosmaro-todomvc-app-codebase)
+
 - [A JavaScript framework for functions of state and action](https://lukaszmakuch.pl/post/a-javascript-framework-for-functions-of-state-and-action/)
 
 ### Support
