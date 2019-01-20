@@ -9,12 +9,13 @@ const getStateAction = {type: 'GET_STATE'};
 const readStats = ({context, children}) => {
   const childrenResults = callChildren({context, children, action: getStateAction});
   return pipe(
+    values,
     map(prop('data')),
     reduce((soFar, state) => ({
       ...soFar,
       [state]: soFar[state] + 1
     }), {active: 0, completed: 0})
-  )(values(childrenResults.result));
+  )(childrenResults.result);
 };
 
 const buildEffects = stats => {
