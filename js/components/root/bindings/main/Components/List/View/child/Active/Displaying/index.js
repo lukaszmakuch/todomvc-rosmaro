@@ -1,11 +1,9 @@
-import {makeBinding, RENDER, MARK_COMPLETED} from './../../lib/displaying';
+import { makeBinding, RENDER, MARK_COMPLETED } from './../../lib/displaying';
 
 export default makeBinding({
+	RENDER: RENDER({ classes: [], checked: false }),
 
-  RENDER: RENDER({classes: [], checked: false}),
+	TOGGLE: MARK_COMPLETED,
 
-  TOGGLE: MARK_COMPLETED,
-
-  spread: {MARK_COMPLETED},
-
+	spread: { MARK_COMPLETED },
 });

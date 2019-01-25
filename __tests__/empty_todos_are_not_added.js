@@ -1,8 +1,13 @@
 import testFlow from '~/testUtils/testFlow';
 import typeInNewTodo from '~/testSteps/type_in_new_todo';
-import assertEnterDoesNotAddTodo from '~/testSteps/assert_enter_does_not_add_todo';
+import enterInNewTodoInput from '~/testSteps/enter_in_new_todo_input';
+import assertTodoCount from '~/testSteps/assert_todo_count';
 
-test('empty todos are not added', testFlow([
-  typeInNewTodo({value: '       '}),
-  assertEnterDoesNotAddTodo,
-]));
+test(
+	'empty todos are not added',
+	testFlow([
+		typeInNewTodo({ value: '       ' }),
+		enterInNewTodoInput,
+		assertTodoCount({ count: 0 }),
+	])
+);

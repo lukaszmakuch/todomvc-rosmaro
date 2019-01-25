@@ -1,9 +1,9 @@
 import rosmaro from 'rosmaro';
-import {createStore, applyMiddleware} from 'redux'
+import { createStore, applyMiddleware } from 'redux';
 import makeRoot from './components/root/index';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import {makeReducer, effectDispatcher} from 'rosmaro-redux';
-import {patch} from '~/js/utils/vdom';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { makeReducer, effectDispatcher } from 'rosmaro-redux';
+import { patch } from '~/js/utils/vdom';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import Navigo from 'navigo';
@@ -11,22 +11,22 @@ import throttle from 'lodash.throttle';
 
 const storageKey = 'rosmaro-todomvc';
 const storage = {
-  store(state) {
-    localStorage.setItem(storageKey, JSON.stringify(state));
-  },
-  read() {
-    const stored = localStorage.getItem(storageKey);
-    return stored ? JSON.parse(stored) : undefined;
-  }
+	store(state) {
+		localStorage.setItem(storageKey, JSON.stringify(state));
+	},
+	read() {
+		const stored = localStorage.getItem(storageKey);
+		return stored ? JSON.parse(stored) : undefined;
+	},
 };
 
 var dispatchFn = () => {};
-const dispatch = (action) => {
-  dispatchFn(action);
+const dispatch = action => {
+	dispatchFn(action);
 };
 
 const modelDescription = makeRoot({
-  dispatch
+	dispatch,
 });
 
 const model = rosmaro(modelDescription);
@@ -35,11 +35,9 @@ const rootReducer = makeReducer(model);
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-  rootReducer,
-  storage.read(),
-  composeWithDevTools(
-    applyMiddleware(effectDispatcher, sagaMiddleware)
-  )
+	rootReducer,
+	storage.read(),
+	composeWithDevTools(applyMiddleware(effectDispatcher, sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
@@ -49,17 +47,17 @@ dispatchFn = store.dispatch;
 const container = document.getElementById('app-root');
 
 let lastView = container;
-const renderAction = {type: 'RENDER', dispatch: store.dispatch};
+const renderAction = { type: 'RENDER', dispatch: store.dispatch };
 const refreshView = () => {
-  const {state} = store.getState();
-  const newView = model({state, action: renderAction}).result.data;
-  patch(lastView, newView);
-  lastView = newView;
+	const { state } = store.getState();
+	const newView = model({ state, action: renderAction }).result.data;
+	patch(lastView, newView);
+	lastView = newView;
 };
 
 const persist = throttle(() => {
-  const {state} = store.getState();
-  storage.store(model({state, action: {type: 'PREPARE_FOR_PERSISTENCE'}}));
+	const { state } = store.getState();
+	storage.store(model({ state, action: { type: 'PREPARE_FOR_PERSISTENCE' } }));
 }, 1000);
 
 store.subscribe(refreshView);
@@ -69,7 +67,7 @@ refreshView();
 
 let router = new Navigo(null, true, '#');
 router
-  .on('/', () => dispatchFn({type: 'NAVIGATE_TO_ALL'}))
-  .on('/active', () => dispatchFn({type: 'NAVIGATE_TO_ACTIVE'}))
-  .on('/completed', () => dispatchFn({type: 'NAVIGATE_TO_COMPLETED'}))
-  .resolve();
+	.on('/', () => dispatchFn({ type: 'NAVIGATE_TO_ALL' }))
+	.on('/active', () => dispatchFn({ type: 'NAVIGATE_TO_ACTIVE' }))
+	.on('/completed', () => dispatchFn({ type: 'NAVIGATE_TO_COMPLETED' }))
+	.resolve();

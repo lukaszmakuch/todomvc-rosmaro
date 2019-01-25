@@ -1,3 +1,3 @@
-import {transparentHandler} from '~/js/utils/handlers';
+import { transparentHandler } from '~/js/utils/handlers';
 
-export default opts => ({handler: transparentHandler});
+export default opts => ({ handler: transparentHandler });

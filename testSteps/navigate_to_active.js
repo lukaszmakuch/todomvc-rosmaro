@@ -1,3 +1,3 @@
-export default ({value}) => ({testContext}) => ({
-  feed: {type: 'NAVIGATE_TO_ACTIVE'},
+export default ({ value }) => ({ testContext }) => ({
+	feed: { type: 'NAVIGATE_TO_ACTIVE' },
 });

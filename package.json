@@ -4,7 +4,8 @@
     "start": "cross-env NODE_ENV=development parcel --no-hmr index.html ",
     "build": "parcel build index.html --public-url /todomvc-rosmaro",
     "test": "jest --watch",
-    "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings"
+    "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings",
+    "prettier:format": "prettier --single-quote --trailing-comma es5 --write \"{js/,__tests__,testSteps}/**/*.js\""
   },
   "dependencies": {
     "lodash.throttle": "^4.1.1",
@@ -24,6 +25,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "prettier": "1.16.1",
     "babel-core": "^6.26.3",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",

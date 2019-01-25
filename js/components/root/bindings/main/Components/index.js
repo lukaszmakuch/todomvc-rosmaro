@@ -1,5 +1,5 @@
-import {defaultHandler} from 'rosmaro-binding-utils';
+import { defaultHandler } from 'rosmaro-binding-utils';
 
-export default ({dispatch}) => ({
-  handler: defaultHandler
+export default ({ dispatch }) => ({
+	handler: defaultHandler,
 });

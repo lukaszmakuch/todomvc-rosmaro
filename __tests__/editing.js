@@ -11,80 +11,89 @@ import blurEditField from '~/testSteps/blur_edit_field';
 import assertTodoCount from '~/testSteps/assert_todo_count';
 
 describe('editing', () => {
+	const addTodos = [
+		addTodo({ value: 'todo A' }),
+		addTodo({ value: 'todo B' }),
 
-  const addTodos = [
-    addTodo({value: 'todo A'}),
-    addTodo({value: 'todo B'}),
+		assertTodoCount({ count: 2 }),
 
-    assertTodoCount({count: 2}),
+		assertNotEditingTodo({ value: 'todo A' }),
+		assertNotEditingTodo({ value: 'todo B' }),
+	];
 
-    assertNotEditingTodo({value: 'todo A'}),
-    assertNotEditingTodo({value: 'todo B'}),
-  ];
+	describe('changing the content if the new one is not empty', () => {
+		const startEditing = [
+			addTodos,
 
-  describe('changing the content if the new one is not empty', () => {
+			doubleClickTodo({ value: 'todo B' }),
+			assertEditingTodo({ value: 'todo B' }),
+			assertNotEditingTodo({ value: 'todo A' }),
 
-    const startEditing = [
-      addTodos,
+			typeInEditField({ oldValue: 'todo B', newValue: 'updated todo B' }),
+		];
 
-      doubleClickTodo({value: 'todo B'}),
-      assertEditingTodo({value: 'todo B'}),
-      assertNotEditingTodo({value: 'todo A'}),
+		it(
+			'finishes when Enter is pressed',
+			testFlow([
+				startEditing,
+				keyInEditField({ value: 'updated todo B', key: 'Enter' }),
+				assertNotEditingTodo({ value: 'updated todo B' }),
+			])
+		);
 
-      typeInEditField({oldValue: 'todo B', newValue: 'updated todo B'}),
-    ];
+		it(
+			'finishes when focus is lost',
+			testFlow([
+				startEditing,
+				blurEditField({ value: 'updated todo B' }),
+				assertNotEditingTodo({ value: 'updated todo B' }),
+			])
+		);
+	});
 
-    it('finishes when Enter is pressed', testFlow([
-      startEditing,
-      keyInEditField({value: 'updated todo B', key: 'Enter'}),
-      assertNotEditingTodo({value: 'updated todo B'}),
-    ]));
+	describe('removing the todo if the field is empty', () => {
+		const enterEmptyContent = [
+			addTodos,
+			doubleClickTodo({ value: 'todo B' }),
+			typeInEditField({ oldValue: 'todo B', newValue: '' }),
+		];
 
-    it('finishes when focus is lost', testFlow([
-      startEditing,
-      blurEditField({value: 'updated todo B'}),
-      assertNotEditingTodo({value: 'updated todo B'}),
-    ]));
+		const assertTodoRemoved = [
+			assertTodoNotPresent({ content: 'todo B' }),
+			assertTodoPresent({ expectedContent: 'todo A' }),
+			assertTodoCount({ count: 1 }),
+		];
 
-  });
+		it(
+			'removes the todo when Enter is pressed',
+			testFlow([
+				enterEmptyContent,
+				keyInEditField({ value: '', key: 'Enter' }),
+				assertTodoRemoved,
+			])
+		);
 
-  describe('removing the todo if the field is empty', () => {
+		it(
+			'removes the todo when focus is lost',
+			testFlow([
+				enterEmptyContent,
+				blurEditField({ value: '' }),
+				assertTodoRemoved,
+			])
+		);
+	});
 
-    const enterEmptyContent = [
-      addTodos,
-      doubleClickTodo({value: 'todo B'}),
-      typeInEditField({oldValue: 'todo B', newValue: ''}),
-    ];
-
-    const assertTodoRemoved = [
-      assertTodoNotPresent({content: 'todo B'}),
-      assertTodoPresent({expectedContent: 'todo A'}),
-      assertTodoCount({count: 1}),
-    ];
-
-    it('removes the todo when Enter is pressed', testFlow([
-      enterEmptyContent,
-      keyInEditField({value: '', key: 'Enter'}),
-      assertTodoRemoved,
-    ]));
-
-    it('removes the todo when focus is lost', testFlow([
-      enterEmptyContent,
-      blurEditField({value: ''}),
-      assertTodoRemoved,
-    ]));
-
-  });
-
-  it('discardes changes when Escape is pressed', testFlow([
-    addTodos,
-    doubleClickTodo({value: 'todo A'}),
-    typeInEditField({oldValue: 'todo A', newValue: 'updated todo A'}),
-    keyInEditField({value: 'updated todo A', key: 'Escape'}),
-    assertTodoPresent({expectedContent: 'todo A'}),
-    assertTodoPresent({expectedContent: 'todo B'}),
-    assertNotEditingTodo({value: 'todo A'}),
-    assertTodoNotPresent({content: 'updated todo A'}),
-  ]));
-
+	it(
+		'discardes changes when Escape is pressed',
+		testFlow([
+			addTodos,
+			doubleClickTodo({ value: 'todo A' }),
+			typeInEditField({ oldValue: 'todo A', newValue: 'updated todo A' }),
+			keyInEditField({ value: 'updated todo A', key: 'Escape' }),
+			assertTodoPresent({ expectedContent: 'todo A' }),
+			assertTodoPresent({ expectedContent: 'todo B' }),
+			assertNotEditingTodo({ value: 'todo A' }),
+			assertTodoNotPresent({ content: 'updated todo A' }),
+		])
+	);
 });

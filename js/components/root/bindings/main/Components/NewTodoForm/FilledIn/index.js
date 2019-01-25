@@ -1,3 +1,3 @@
-import {makeBinding, ADD} from './../lib/form';
+import { makeBinding, ADD } from './../lib/form';
 
-export default makeBinding({ADD});
+export default makeBinding({ ADD });

@@ -10,149 +10,157 @@ import navigateToActive from '~/testSteps/navigate_to_active';
 import navigateToCompleted from '~/testSteps/navigate_to_completed';
 
 describe('routing', () => {
+	const addTodos = [
+		addTodo({ value: 'todo A' }),
+		toggleTodo({ value: 'todo A' }),
 
-  const addTodos = [
-    addTodo({value: 'todo A'}),
-    toggleTodo({value: 'todo A'}),
+		addTodo({ value: 'todo B' }),
+		toggleTodo({ value: 'todo B' }),
 
-    addTodo({value: 'todo B'}),
-    toggleTodo({value: 'todo B'}),
+		addTodo({ value: 'todo C' }),
+		addTodo({ value: 'todo D' }),
+		addTodo({ value: 'todo E' }),
+	];
 
-    addTodo({value: 'todo C'}),
-    addTodo({value: 'todo D'}),
-    addTodo({value: 'todo E'}),
-  ];
+	it(
+		'shows all todos when on the ALL tab',
+		testFlow([
+			addTodos,
 
-  it('shows all todos when on the ALL tab', testFlow([
-    addTodos,
+			navigateToAll,
 
-    navigateToAll,
+			assertTodoPresent({ expectedContent: 'todo A' }),
+			assertTodoCompleted({ value: 'todo A' }),
 
-    assertTodoPresent({expectedContent: 'todo A'}),
-    assertTodoCompleted({value: 'todo A'}),
+			assertTodoPresent({ expectedContent: 'todo B' }),
+			assertTodoCompleted({ value: 'todo B' }),
 
-    assertTodoPresent({expectedContent: 'todo B'}),
-    assertTodoCompleted({value: 'todo B'}),
+			assertTodoPresent({ expectedContent: 'todo C' }),
+			assertTodoActive({ value: 'todo C' }),
 
-    assertTodoPresent({expectedContent: 'todo C'}),
-    assertTodoActive({value: 'todo C'}),
+			assertTodoPresent({ expectedContent: 'todo D' }),
+			assertTodoActive({ value: 'todo D' }),
 
-    assertTodoPresent({expectedContent: 'todo D'}),
-    assertTodoActive({value: 'todo D'}),
+			assertTodoPresent({ expectedContent: 'todo E' }),
+			assertTodoActive({ value: 'todo E' }),
+		])
+	);
 
-    assertTodoPresent({expectedContent: 'todo E'}),
-    assertTodoActive({value: 'todo E'}),
+	it(
+		'shows only active todos when on the ACTIVE tab',
+		testFlow([
+			addTodos,
 
-  ]));
+			navigateToActive,
 
-  it('shows only active todos when on the ACTIVE tab', testFlow([
-    addTodos,
+			assertTodoNotPresent({ content: 'todo A' }),
 
-    navigateToActive,
+			assertTodoNotPresent({ content: 'todo B' }),
 
-    assertTodoNotPresent({content: 'todo A'}),
+			assertTodoPresent({ expectedContent: 'todo C' }),
+			assertTodoActive({ value: 'todo C' }),
 
-    assertTodoNotPresent({content: 'todo B'}),
+			assertTodoPresent({ expectedContent: 'todo D' }),
+			assertTodoActive({ value: 'todo D' }),
 
-    assertTodoPresent({expectedContent: 'todo C'}),
-    assertTodoActive({value: 'todo C'}),
+			assertTodoPresent({ expectedContent: 'todo E' }),
+			assertTodoActive({ value: 'todo E' }),
+		])
+	);
 
-    assertTodoPresent({expectedContent: 'todo D'}),
-    assertTodoActive({value: 'todo D'}),
+	it(
+		'shows only completed todos when on the COMPLETED tab',
+		testFlow([
+			addTodos,
 
-    assertTodoPresent({expectedContent: 'todo E'}),
-    assertTodoActive({value: 'todo E'}),
+			navigateToCompleted,
 
-  ]));
+			assertTodoPresent({ expectedContent: 'todo A' }),
+			assertTodoCompleted({ value: 'todo A' }),
 
-  it('shows only completed todos when on the COMPLETED tab', testFlow([
-    addTodos,
+			assertTodoPresent({ expectedContent: 'todo B' }),
+			assertTodoCompleted({ value: 'todo B' }),
 
-    navigateToCompleted,
+			assertTodoNotPresent({ content: 'todo C' }),
 
-    assertTodoPresent({expectedContent: 'todo A'}),
-    assertTodoCompleted({value: 'todo A'}),
+			assertTodoNotPresent({ content: 'todo D' }),
 
-    assertTodoPresent({expectedContent: 'todo B'}),
-    assertTodoCompleted({value: 'todo B'}),
+			assertTodoNotPresent({ content: 'todo E' }),
+		])
+	);
 
-    assertTodoNotPresent({content: 'todo C'}),
+	it(
+		'preserves todos between tabs',
+		testFlow([
+			addTodos,
 
-    assertTodoNotPresent({content: 'todo D'}),
+			navigateToActive,
 
-    assertTodoNotPresent({content: 'todo E'}),
+			addTodo({ value: 'new todo' }),
+			assertTodoPresent({ expectedContent: 'new todo' }),
+			assertTodoActive({ value: 'new todo' }),
 
-  ]));
+			navigateToAll,
 
-  it('preserves todos between tabs', testFlow([
-    addTodos,
+			assertTodoPresent({ expectedContent: 'todo A' }),
+			assertTodoCompleted({ value: 'todo A' }),
 
-    navigateToActive,
-    
-    addTodo({value: 'new todo'}),
-    assertTodoPresent({expectedContent: 'new todo'}),
-    assertTodoActive({value: 'new todo'}),
+			assertTodoPresent({ expectedContent: 'todo B' }),
+			assertTodoCompleted({ value: 'todo B' }),
 
-    navigateToAll,
+			assertTodoPresent({ expectedContent: 'todo C' }),
+			assertTodoActive({ value: 'todo C' }),
 
-    assertTodoPresent({expectedContent: 'todo A'}),
-    assertTodoCompleted({value: 'todo A'}),
+			assertTodoPresent({ expectedContent: 'todo D' }),
+			assertTodoActive({ value: 'todo D' }),
 
-    assertTodoPresent({expectedContent: 'todo B'}),
-    assertTodoCompleted({value: 'todo B'}),
+			assertTodoPresent({ expectedContent: 'todo E' }),
+			assertTodoActive({ value: 'todo E' }),
 
-    assertTodoPresent({expectedContent: 'todo C'}),
-    assertTodoActive({value: 'todo C'}),
+			assertTodoPresent({ expectedContent: 'new todo' }),
+			assertTodoActive({ value: 'new todo' }),
+		])
+	);
 
-    assertTodoPresent({expectedContent: 'todo D'}),
-    assertTodoActive({value: 'todo D'}),
+	it(
+		'always makes new todos active',
+		testFlow([
+			addTodos,
 
-    assertTodoPresent({expectedContent: 'todo E'}),
-    assertTodoActive({value: 'todo E'}),
+			navigateToCompleted,
 
-    assertTodoPresent({expectedContent: 'new todo'}),
-    assertTodoActive({value: 'new todo'}),
+			addTodo({ value: 'new todo' }),
+			// The todo is not present, because we added it on the "completed" tab
+			// and every new todo is active.
+			assertTodoNotPresent({ content: 'new todo' }),
 
-  ]));
+			navigateToActive,
 
-  it('always makes new todos active', testFlow([
-    addTodos,
+			assertTodoNotPresent({ content: 'todo A' }),
 
-    navigateToCompleted,
+			assertTodoNotPresent({ content: 'todo B' }),
 
-    addTodo({value: 'new todo'}),
-    // The todo is not present, because we added it on the "completed" tab
-    // and every new todo is active.
-    assertTodoNotPresent({content: 'new todo'}),
+			assertTodoPresent({ expectedContent: 'todo C' }),
+			assertTodoActive({ value: 'todo C' }),
 
-    navigateToActive,
+			assertTodoPresent({ expectedContent: 'todo D' }),
+			assertTodoActive({ value: 'todo D' }),
 
-    assertTodoNotPresent({content: 'todo A'}),
+			assertTodoPresent({ expectedContent: 'todo E' }),
+			assertTodoActive({ value: 'todo E' }),
 
-    assertTodoNotPresent({content: 'todo B'}),
+			// This is the todo we added on the "completed" tab.
+			assertTodoPresent({ expectedContent: 'new todo' }),
+			assertTodoActive({ value: 'new todo' }),
 
-    assertTodoPresent({expectedContent: 'todo C'}),
-    assertTodoActive({value: 'todo C'}),
+			toggleTodo({ value: 'new todo' }),
 
-    assertTodoPresent({expectedContent: 'todo D'}),
-    assertTodoActive({value: 'todo D'}),
+			assertTodoNotPresent({ content: 'new todo' }),
 
-    assertTodoPresent({expectedContent: 'todo E'}),
-    assertTodoActive({value: 'todo E'}),
+			navigateToAll,
 
-    // This is the todo we added on the "completed" tab.
-    assertTodoPresent({expectedContent: 'new todo'}),
-    assertTodoActive({value: 'new todo'}),
-
-    toggleTodo({value: 'new todo'}),
-
-    assertTodoNotPresent({content: 'new todo'}),
-
-    navigateToAll,
-
-    assertTodoPresent({expectedContent: 'new todo'}),
-    assertTodoCompleted({value: 'new todo'}),
-
-  ]));
-
+			assertTodoPresent({ expectedContent: 'new todo' }),
+			assertTodoCompleted({ value: 'new todo' }),
+		])
+	);
 });
