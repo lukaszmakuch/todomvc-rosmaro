@@ -9,8 +9,7 @@ import assertMarkAllAsCompletedInvisible from '~/testSteps/assert_mark_all_as_co
 import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
-test(
-	'adding a todo',
+test('adding a todo', () =>
 	testFlow([
 		assertFooterInvisible,
 		assertMainInvisible,
@@ -21,5 +20,4 @@ test(
 		assertTodoActive({ value: 'new todo' }),
 		assertFooterVisible,
 		assertMainVisible,
-	])
-);
+	]));

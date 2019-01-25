@@ -22,8 +22,7 @@ describe('routing', () => {
 		addTodo({ value: 'todo E' }),
 	];
 
-	it(
-		'shows all todos when on the ALL tab',
+	it('shows all todos when on the ALL tab', () =>
 		testFlow([
 			addTodos,
 
@@ -43,11 +42,9 @@ describe('routing', () => {
 
 			assertTodoPresent({ expectedContent: 'todo E' }),
 			assertTodoActive({ value: 'todo E' }),
-		])
-	);
+		]));
 
-	it(
-		'shows only active todos when on the ACTIVE tab',
+	it('shows only active todos when on the ACTIVE tab', () =>
 		testFlow([
 			addTodos,
 
@@ -65,11 +62,9 @@ describe('routing', () => {
 
 			assertTodoPresent({ expectedContent: 'todo E' }),
 			assertTodoActive({ value: 'todo E' }),
-		])
-	);
+		]));
 
-	it(
-		'shows only completed todos when on the COMPLETED tab',
+	it('shows only completed todos when on the COMPLETED tab', () =>
 		testFlow([
 			addTodos,
 
@@ -86,11 +81,9 @@ describe('routing', () => {
 			assertTodoNotPresent({ content: 'todo D' }),
 
 			assertTodoNotPresent({ content: 'todo E' }),
-		])
-	);
+		]));
 
-	it(
-		'preserves todos between tabs',
+	it('preserves todos between tabs', () =>
 		testFlow([
 			addTodos,
 
@@ -119,11 +112,9 @@ describe('routing', () => {
 
 			assertTodoPresent({ expectedContent: 'new todo' }),
 			assertTodoActive({ value: 'new todo' }),
-		])
-	);
+		]));
 
-	it(
-		'always makes new todos active',
+	it('always makes new todos active', () =>
 		testFlow([
 			addTodos,
 
@@ -161,6 +152,5 @@ describe('routing', () => {
 
 			assertTodoPresent({ expectedContent: 'new todo' }),
 			assertTodoCompleted({ value: 'new todo' }),
-		])
-	);
+		]));
 });

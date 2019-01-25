@@ -5,7 +5,7 @@ import rosmaro from 'rosmaro';
 import {flatten, pipe, map} from 'ramda';
 import render from '~/testUtils/render';
 
-export default flow => () => {
+export default flow => {
   let store = configureStore([])({});
   const model = rosmaro(makeRoot({...store}));
   testFlow({model, flow, initialTestContext: {render: render(), store}});

@@ -7,8 +7,7 @@ import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoNotPresent from '~/testSteps/assert_todo_not_present';
 import clickDestroy from '~/testSteps/click_destroy';
 
-test(
-	'adding a todo',
+test('adding a todo', () =>
 	testFlow([
 		addTodo({ value: 'todo A' }),
 		toggleTodo({ value: 'todo A' }),
@@ -26,5 +25,4 @@ test(
 
 		assertTodoPresent({ expectedContent: 'todo C' }),
 		assertTodoActive({ value: 'todo C' }),
-	])
-);
+	]));

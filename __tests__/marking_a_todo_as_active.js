@@ -4,8 +4,7 @@ import toggleTodo from '~/testSteps/toggle_todo';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 import assertTodoCompleted from '~/testSteps/assert_todo_completed';
 
-test(
-	'marking a todo as active',
+test('marking a todo as active', () =>
 	testFlow([
 		addTodo({ value: 'first todo' }),
 		addTodo({ value: 'second todo' }),
@@ -19,5 +18,4 @@ test(
 
 		assertTodoActive({ value: 'first todo' }),
 		assertTodoActive({ value: 'second todo' }),
-	])
-);
+	]));

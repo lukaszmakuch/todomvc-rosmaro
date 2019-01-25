@@ -8,19 +8,16 @@ import assertTodoNotPresent from '~/testSteps/assert_todo_not_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
 describe('clear completed', () => {
-	it(
-		'is not visible when there are no completed todos',
+	it('is not visible when there are no completed todos', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 			addTodo({ value: 'todo B' }),
 			addTodo({ value: 'todo C' }),
 
 			clearCompletedInvisible,
-		])
-	);
+		]));
 
-	it(
-		'is visible when there is at least one completed todo',
+	it('is visible when there is at least one completed todo', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 
@@ -30,11 +27,9 @@ describe('clear completed', () => {
 			addTodo({ value: 'todo C' }),
 
 			clearCompletedVisible,
-		])
-	);
+		]));
 
-	it(
-		'removes completed todos when clicked',
+	it('removes completed todos when clicked', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 
@@ -54,6 +49,5 @@ describe('clear completed', () => {
 			assertTodoNotPresent({ content: 'todo B' }),
 			assertTodoActive({ value: 'todo C' }),
 			assertTodoNotPresent({ content: 'todo D' }),
-		])
-	);
+		]));
 });

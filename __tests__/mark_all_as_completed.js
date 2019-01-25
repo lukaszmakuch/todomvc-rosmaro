@@ -9,8 +9,7 @@ import assertTodoCompleted from '~/testSteps/assert_todo_completed';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
 describe('mark all as completed', () => {
-	it(
-		'is checked when all todos are completed',
+	it('is checked when all todos are completed', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 			toggleTodo({ value: 'todo A' }),
@@ -22,11 +21,9 @@ describe('mark all as completed', () => {
 			toggleTodo({ value: 'todo C' }),
 
 			assertMarkAllAsCompletedChecked,
-		])
-	);
+		]));
 
-	it(
-		'is not checked when there are some active todos',
+	it('is not checked when there are some active todos', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 			toggleTodo({ value: 'todo A' }),
@@ -37,16 +34,12 @@ describe('mark all as completed', () => {
 			toggleTodo({ value: 'todo C' }),
 
 			assertMarkAllAsCompletedUnhecked,
-		])
-	);
+		]));
 
-	it(
-		'is not visible without todos',
-		testFlow([assertMarkAllAsCompletedInvisible])
-	);
+	it('is not visible without todos', () =>
+		testFlow([assertMarkAllAsCompletedInvisible]));
 
-	it(
-		'marks all todos as completed when clicked when not checked',
+	it('marks all todos as completed when clicked when not checked', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 			toggleTodo({ value: 'todo A' }),
@@ -68,11 +61,9 @@ describe('mark all as completed', () => {
 			assertTodoCompleted({ value: 'todo B' }),
 			assertTodoCompleted({ value: 'todo C' }),
 			assertTodoCompleted({ value: 'todo D' }),
-		])
-	);
+		]));
 
-	it(
-		'marks all todos as active when clicked when checked',
+	it('marks all todos as active when clicked when checked', () =>
 		testFlow([
 			addTodo({ value: 'todo A' }),
 			toggleTodo({ value: 'todo A' }),
@@ -86,6 +77,5 @@ describe('mark all as completed', () => {
 
 			assertTodoActive({ value: 'todo A' }),
 			assertTodoActive({ value: 'todo B' }),
-		])
-	);
+		]));
 });

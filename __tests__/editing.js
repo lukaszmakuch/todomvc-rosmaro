@@ -32,23 +32,19 @@ describe('editing', () => {
 			typeInEditField({ oldValue: 'todo B', newValue: 'updated todo B' }),
 		];
 
-		it(
-			'finishes when Enter is pressed',
+		it('finishes when Enter is pressed', () =>
 			testFlow([
 				startEditing,
 				keyInEditField({ value: 'updated todo B', key: 'Enter' }),
 				assertNotEditingTodo({ value: 'updated todo B' }),
-			])
-		);
+			]));
 
-		it(
-			'finishes when focus is lost',
+		it('finishes when focus is lost', () =>
 			testFlow([
 				startEditing,
 				blurEditField({ value: 'updated todo B' }),
 				assertNotEditingTodo({ value: 'updated todo B' }),
-			])
-		);
+			]));
 	});
 
 	describe('removing the todo if the field is empty', () => {
@@ -64,27 +60,22 @@ describe('editing', () => {
 			assertTodoCount({ count: 1 }),
 		];
 
-		it(
-			'removes the todo when Enter is pressed',
+		it('removes the todo when Enter is pressed', () =>
 			testFlow([
 				enterEmptyContent,
 				keyInEditField({ value: '', key: 'Enter' }),
 				assertTodoRemoved,
-			])
-		);
+			]));
 
-		it(
-			'removes the todo when focus is lost',
+		it('removes the todo when focus is lost', () =>
 			testFlow([
 				enterEmptyContent,
 				blurEditField({ value: '' }),
 				assertTodoRemoved,
-			])
-		);
+			]));
 	});
 
-	it(
-		'discardes changes when Escape is pressed',
+	it('discardes changes when Escape is pressed', () =>
 		testFlow([
 			addTodos,
 			doubleClickTodo({ value: 'todo A' }),
@@ -94,6 +85,5 @@ describe('editing', () => {
 			assertTodoPresent({ expectedContent: 'todo B' }),
 			assertNotEditingTodo({ value: 'todo A' }),
 			assertTodoNotPresent({ content: 'updated todo A' }),
-		])
-	);
+		]));
 });
