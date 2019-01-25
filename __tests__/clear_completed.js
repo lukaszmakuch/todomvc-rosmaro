@@ -1,13 +1,11 @@
 import testFlow from '~/testUtils/testFlow';
 import addTodo from '~/testSteps/add_todo';
 import toggleTodo from '~/testSteps/toggle_todo';
-import clearCompletedNotVisible from '~/testSteps/clear_completed_not_visible';
+import clearCompletedInvisible from '~/testSteps/clear_completed_invisible';
 import clearCompletedVisible from '~/testSteps/clear_completed_visible';
 import clickClearCompleted from '~/testSteps/click_clear_completed';
-import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoNotPresent from '~/testSteps/assert_todo_not_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
-import assertTodoCompleted from '~/testSteps/assert_todo_completed';
 
 describe('clear completed', () => {
 
@@ -16,7 +14,7 @@ describe('clear completed', () => {
     addTodo({value: 'todo B'}),
     addTodo({value: 'todo C'}),
 
-    clearCompletedNotVisible
+    clearCompletedInvisible
   ]));
 
   it('is visible when there is at least one completed todo', testFlow([
@@ -43,7 +41,7 @@ describe('clear completed', () => {
 
     clearCompletedVisible,
     clickClearCompleted,
-    clearCompletedNotVisible,
+    clearCompletedInvisible,
 
     assertTodoActive({value: 'todo A'}),
     assertTodoNotPresent({content: 'todo B'}),

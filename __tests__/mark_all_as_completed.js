@@ -1,9 +1,9 @@
 import testFlow from '~/testUtils/testFlow';
 import addTodo from '~/testSteps/add_todo';
 import assertMarkAllAsCompletedChecked from '~/testSteps/assert_mark_all_as_completed_checked';
-import assertMarkAllAsCompletedNotChecked from '~/testSteps/assert_mark_all_as_completed_not_checked';
+import assertMarkAllAsCompletedUnhecked from '~/testSteps/assert_mark_all_as_completed_unchecked';
 import toggleTodo from '~/testSteps/toggle_todo';
-import assertMarkAllAsCompletedNotVisible from '~/testSteps/assert_mark_all_as_completed_not_visible';
+import assertMarkAllAsCompletedInvisible from '~/testSteps/assert_mark_all_as_completed_invisible';
 import clickMarkAllAsCompleted from '~/testSteps/click_mark_all_as_completed';
 import assertTodoCompleted from '~/testSteps/assert_todo_completed';
 import assertTodoActive from '~/testSteps/assert_todo_active';
@@ -32,11 +32,11 @@ describe('mark all as completed', () => {
     addTodo({value: 'todo C'}),
     toggleTodo({value: 'todo C'}),
 
-    assertMarkAllAsCompletedNotChecked,
+    assertMarkAllAsCompletedUnhecked,
   ]));
 
   it('is not visible without todos', testFlow([
-    assertMarkAllAsCompletedNotVisible
+    assertMarkAllAsCompletedInvisible
   ]));
 
   it('marks all todos as completed when clicked when not checked', testFlow([

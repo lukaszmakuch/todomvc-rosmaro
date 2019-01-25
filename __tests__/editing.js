@@ -1,11 +1,7 @@
 import testFlow from '~/testUtils/testFlow';
 import addTodo from '~/testSteps/add_todo';
-import clearCompletedNotVisible from '~/testSteps/clear_completed_not_visible';
-import clearCompletedVisible from '~/testSteps/clear_completed_visible';
-import clickClearCompleted from '~/testSteps/click_clear_completed';
 import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoNotPresent from '~/testSteps/assert_todo_not_present';
-import assertTodoActive from '~/testSteps/assert_todo_active';
 import doubleClickTodo from '~/testSteps/double_click_todo';
 import assertEditingTodo from '~/testSteps/assert_editing_todo';
 import assertNotEditingTodo from '~/testSteps/assert_not_editing_todo';
@@ -13,8 +9,6 @@ import typeInEditField from '~/testSteps/type_in_edit_field';
 import keyInEditField from '~/testSteps/key_in_edit_field';
 import blurEditField from '~/testSteps/blur_edit_field';
 import assertTodoCount from '~/testSteps/assert_todo_count';
-
-import {prettyDOM} from 'snabbdom-testing-library';
 
 describe('editing', () => {
 
