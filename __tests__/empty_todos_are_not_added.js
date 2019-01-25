@@ -4,8 +4,8 @@ import enterInNewTodoInput from '~/testSteps/enter_in_new_todo_input';
 import assertTodoCount from '~/testSteps/assert_todo_count';
 
 test('empty todos are not added', () =>
-	testFlow([
-		typeInNewTodo({ value: '       ' }),
-		enterInNewTodoInput,
-		assertTodoCount({ count: 0 }),
-	]));
+  testFlow([
+    typeInNewTodo({ value: '       ' }),
+    enterInNewTodoInput,
+    assertTodoCount({ count: 0 }),
+  ]));

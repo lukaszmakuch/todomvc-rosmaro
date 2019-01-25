@@ -5,7 +5,7 @@
     "build": "parcel build index.html --public-url /todomvc-rosmaro",
     "test": "jest --watch",
     "rosmaro-bindings": "rosmaro-tools bindings:build js/components/root/bindings",
-    "prettier:format": "prettier --single-quote --trailing-comma es5 --write \"{js/,__tests__,testSteps}/**/*.js\""
+    "prettier:format": "prettier --single-quote --trailing-comma es5 --write \"{js,testUtils,__tests__,testSteps}/**/*.js\""
   },
   "dependencies": {
     "lodash.throttle": "^4.1.1",

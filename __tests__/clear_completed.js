@@ -8,46 +8,46 @@ import assertTodoNotPresent from '~/testSteps/assert_todo_not_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
 describe('clear completed', () => {
-	it('is not visible when there are no completed todos', () =>
-		testFlow([
-			addTodo({ value: 'todo A' }),
-			addTodo({ value: 'todo B' }),
-			addTodo({ value: 'todo C' }),
+  it('is not visible when there are no completed todos', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
+      addTodo({ value: 'todo B' }),
+      addTodo({ value: 'todo C' }),
 
-			clearCompletedInvisible,
-		]));
+      clearCompletedInvisible,
+    ]));
 
-	it('is visible when there is at least one completed todo', () =>
-		testFlow([
-			addTodo({ value: 'todo A' }),
+  it('is visible when there is at least one completed todo', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
 
-			addTodo({ value: 'todo B' }),
-			toggleTodo({ value: 'todo B' }),
+      addTodo({ value: 'todo B' }),
+      toggleTodo({ value: 'todo B' }),
 
-			addTodo({ value: 'todo C' }),
+      addTodo({ value: 'todo C' }),
 
-			clearCompletedVisible,
-		]));
+      clearCompletedVisible,
+    ]));
 
-	it('removes completed todos when clicked', () =>
-		testFlow([
-			addTodo({ value: 'todo A' }),
+  it('removes completed todos when clicked', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
 
-			addTodo({ value: 'todo B' }),
-			toggleTodo({ value: 'todo B' }),
+      addTodo({ value: 'todo B' }),
+      toggleTodo({ value: 'todo B' }),
 
-			addTodo({ value: 'todo C' }),
+      addTodo({ value: 'todo C' }),
 
-			addTodo({ value: 'todo D' }),
-			toggleTodo({ value: 'todo D' }),
+      addTodo({ value: 'todo D' }),
+      toggleTodo({ value: 'todo D' }),
 
-			clearCompletedVisible,
-			clickClearCompleted,
-			clearCompletedInvisible,
+      clearCompletedVisible,
+      clickClearCompleted,
+      clearCompletedInvisible,
 
-			assertTodoActive({ value: 'todo A' }),
-			assertTodoNotPresent({ content: 'todo B' }),
-			assertTodoActive({ value: 'todo C' }),
-			assertTodoNotPresent({ content: 'todo D' }),
-		]));
+      assertTodoActive({ value: 'todo A' }),
+      assertTodoNotPresent({ content: 'todo B' }),
+      assertTodoActive({ value: 'todo C' }),
+      assertTodoNotPresent({ content: 'todo D' }),
+    ]));
 });

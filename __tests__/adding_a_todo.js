@@ -10,14 +10,14 @@ import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
 test('adding a todo', () =>
-	testFlow([
-		assertFooterInvisible,
-		assertMainInvisible,
-		assertNewTodoFormFocused,
-		assertMarkAllAsCompletedInvisible,
-		addTodo({ value: 'new todo' }),
-		assertTodoPresent({ expectedContent: 'new todo' }),
-		assertTodoActive({ value: 'new todo' }),
-		assertFooterVisible,
-		assertMainVisible,
-	]));
+  testFlow([
+    assertFooterInvisible,
+    assertMainInvisible,
+    assertNewTodoFormFocused,
+    assertMarkAllAsCompletedInvisible,
+    addTodo({ value: 'new todo' }),
+    assertTodoPresent({ expectedContent: 'new todo' }),
+    assertTodoActive({ value: 'new todo' }),
+    assertFooterVisible,
+    assertMainVisible,
+  ]));
