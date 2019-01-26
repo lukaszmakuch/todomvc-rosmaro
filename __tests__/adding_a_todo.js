@@ -6,6 +6,7 @@ import assertMainVisible from '~/testSteps/assert_main_visible';
 import addTodo from '~/testSteps/add_todo';
 import assertNewTodoFormFocused from '~/testSteps/assert_new_todo_form_focused';
 import assertMarkAllAsCompletedInvisible from '~/testSteps/assert_mark_all_as_completed_invisible';
+import assertMarkAllAsCompletedUnchecked from '~/testSteps/assert_mark_all_as_completed_unchecked';
 import assertTodoPresent from '~/testSteps/assert_todo_present';
 import assertTodoActive from '~/testSteps/assert_todo_active';
 
@@ -18,6 +19,7 @@ test('adding a todo', () =>
     addTodo({ value: 'new todo' }),
     assertTodoPresent({ expectedContent: 'new todo' }),
     assertTodoActive({ value: 'new todo' }),
+    assertMarkAllAsCompletedUnchecked,
     assertFooterVisible,
     assertMainVisible,
   ]));
