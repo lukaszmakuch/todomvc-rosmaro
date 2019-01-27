@@ -29,6 +29,78 @@ It's all about associating functions with (state machine) graph nodes.
 
 The whole app is a single `({state, action}) => ({state, result})` function made of a graph drawn in the [Rosmaro editor](https://rosmaro.js.org/editor/) and code utilising the [rosmaro-binding-utils](https://github.com/lukaszmakuch/rosmaro-binding-utils) bound to it using the [Rosmaro CLI tools](https://github.com/lukaszmakuch/rosmaro-tools).
 
+Here's part of the graph visible in the editor:
+![Item graph](https://lukaszmakuch.pl/static/clear_completed_graph-1cac2283e5b3f1fc3d4f624c45ad9588-df0f0.png)
+
+Here's a piece of code:
+```js
+const noneCompleted = () => ({ arrow: 'none are completed' });
+
+export default ({ dispatch }) => ({
+  handler: makeHandler({
+    NO_TODOS_COMPLETED: noneCompleted,
+    NO_TODOS: noneCompleted,
+
+    RENDER: () =>
+      h(
+        'button.clear-completed',
+        {
+          on: { click: () => dispatch({ type: 'CLEAR_COMPLETED' }) },
+        },
+        'Clear completed'
+      ),
+  }),
+});
+```
+
+And here's a test:
+```js
+describe('clear completed', () => {
+  it('is not visible when there are no completed todos', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
+      addTodo({ value: 'todo B' }),
+      addTodo({ value: 'todo C' }),
+
+      clearCompletedInvisible,
+    ]));
+
+  it('is visible when there is at least one completed todo', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
+
+      addTodo({ value: 'todo B' }),
+      toggleTodo({ value: 'todo B' }),
+
+      addTodo({ value: 'todo C' }),
+
+      clearCompletedVisible,
+    ]));
+
+  it('removes completed todos when clicked', () =>
+    testFlow([
+      addTodo({ value: 'todo A' }),
+
+      addTodo({ value: 'todo B' }),
+      toggleTodo({ value: 'todo B' }),
+
+      addTodo({ value: 'todo C' }),
+
+      addTodo({ value: 'todo D' }),
+      toggleTodo({ value: 'todo D' }),
+
+      clearCompletedVisible,
+      clickClearCompleted,
+      clearCompletedInvisible,
+
+      assertTodoActive({ value: 'todo A' }),
+      assertTodoNotPresent({ value: 'todo B' }),
+      assertTodoActive({ value: 'todo C' }),
+      assertTodoNotPresent({ value: 'todo D' }),
+    ]));
+});
+```
+
 The user flows are tested using the [rosmaro-testing-library](https://github.com/lukaszmakuch/rosmaro-testing-library).
 
 The state of the app lives in a [Redux](https://redux.js.org) store connected to [Redux-Saga](http://redux-saga.js.org).
