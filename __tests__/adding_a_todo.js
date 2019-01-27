@@ -17,7 +17,7 @@ test('adding a todo', () =>
     assertNewTodoFormFocused,
     assertMarkAllAsCompletedInvisible,
     addTodo({ value: 'new todo' }),
-    assertTodoPresent({ expectedContent: 'new todo' }),
+    assertTodoPresent({ value: 'new todo' }),
     assertTodoActive({ value: 'new todo' }),
     assertMarkAllAsCompletedUnchecked,
     assertFooterVisible,

@@ -28,19 +28,19 @@ describe('routing', () => {
 
       navigateToAll,
 
-      assertTodoPresent({ expectedContent: 'todo A' }),
+      assertTodoPresent({ value: 'todo A' }),
       assertTodoCompleted({ value: 'todo A' }),
 
-      assertTodoPresent({ expectedContent: 'todo B' }),
+      assertTodoPresent({ value: 'todo B' }),
       assertTodoCompleted({ value: 'todo B' }),
 
-      assertTodoPresent({ expectedContent: 'todo C' }),
+      assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
 
-      assertTodoPresent({ expectedContent: 'todo D' }),
+      assertTodoPresent({ value: 'todo D' }),
       assertTodoActive({ value: 'todo D' }),
 
-      assertTodoPresent({ expectedContent: 'todo E' }),
+      assertTodoPresent({ value: 'todo E' }),
       assertTodoActive({ value: 'todo E' }),
     ]));
 
@@ -54,13 +54,13 @@ describe('routing', () => {
 
       assertTodoNotPresent({ content: 'todo B' }),
 
-      assertTodoPresent({ expectedContent: 'todo C' }),
+      assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
 
-      assertTodoPresent({ expectedContent: 'todo D' }),
+      assertTodoPresent({ value: 'todo D' }),
       assertTodoActive({ value: 'todo D' }),
 
-      assertTodoPresent({ expectedContent: 'todo E' }),
+      assertTodoPresent({ value: 'todo E' }),
       assertTodoActive({ value: 'todo E' }),
     ]));
 
@@ -70,10 +70,10 @@ describe('routing', () => {
 
       navigateToCompleted,
 
-      assertTodoPresent({ expectedContent: 'todo A' }),
+      assertTodoPresent({ value: 'todo A' }),
       assertTodoCompleted({ value: 'todo A' }),
 
-      assertTodoPresent({ expectedContent: 'todo B' }),
+      assertTodoPresent({ value: 'todo B' }),
       assertTodoCompleted({ value: 'todo B' }),
 
       assertTodoNotPresent({ content: 'todo C' }),
@@ -90,27 +90,27 @@ describe('routing', () => {
       navigateToActive,
 
       addTodo({ value: 'new todo' }),
-      assertTodoPresent({ expectedContent: 'new todo' }),
+      assertTodoPresent({ value: 'new todo' }),
       assertTodoActive({ value: 'new todo' }),
 
       navigateToAll,
 
-      assertTodoPresent({ expectedContent: 'todo A' }),
+      assertTodoPresent({ value: 'todo A' }),
       assertTodoCompleted({ value: 'todo A' }),
 
-      assertTodoPresent({ expectedContent: 'todo B' }),
+      assertTodoPresent({ value: 'todo B' }),
       assertTodoCompleted({ value: 'todo B' }),
 
-      assertTodoPresent({ expectedContent: 'todo C' }),
+      assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
 
-      assertTodoPresent({ expectedContent: 'todo D' }),
+      assertTodoPresent({ value: 'todo D' }),
       assertTodoActive({ value: 'todo D' }),
 
-      assertTodoPresent({ expectedContent: 'todo E' }),
+      assertTodoPresent({ value: 'todo E' }),
       assertTodoActive({ value: 'todo E' }),
 
-      assertTodoPresent({ expectedContent: 'new todo' }),
+      assertTodoPresent({ value: 'new todo' }),
       assertTodoActive({ value: 'new todo' }),
     ]));
 
@@ -131,17 +131,17 @@ describe('routing', () => {
 
       assertTodoNotPresent({ content: 'todo B' }),
 
-      assertTodoPresent({ expectedContent: 'todo C' }),
+      assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
 
-      assertTodoPresent({ expectedContent: 'todo D' }),
+      assertTodoPresent({ value: 'todo D' }),
       assertTodoActive({ value: 'todo D' }),
 
-      assertTodoPresent({ expectedContent: 'todo E' }),
+      assertTodoPresent({ value: 'todo E' }),
       assertTodoActive({ value: 'todo E' }),
 
       // This is the todo we added on the "completed" tab.
-      assertTodoPresent({ expectedContent: 'new todo' }),
+      assertTodoPresent({ value: 'new todo' }),
       assertTodoActive({ value: 'new todo' }),
 
       toggleTodo({ value: 'new todo' }),
@@ -150,7 +150,7 @@ describe('routing', () => {
 
       navigateToAll,
 
-      assertTodoPresent({ expectedContent: 'new todo' }),
+      assertTodoPresent({ value: 'new todo' }),
       assertTodoCompleted({ value: 'new todo' }),
     ]));
 });

@@ -16,13 +16,13 @@ test('adding a todo', () =>
 
     addTodo({ value: 'todo C' }),
 
-    assertTodoPresent({ expectedContent: 'todo A' }),
+    assertTodoPresent({ value: 'todo A' }),
     assertTodoCompleted({ value: 'todo A' }),
 
     clickDestroy({ todo: 'todo B' }),
 
     assertTodoNotPresent({ content: 'todo B' }),
 
-    assertTodoPresent({ expectedContent: 'todo C' }),
+    assertTodoPresent({ value: 'todo C' }),
     assertTodoActive({ value: 'todo C' }),
   ]));

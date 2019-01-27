@@ -56,7 +56,7 @@ describe('editing', () => {
 
     const assertTodoRemoved = [
       assertTodoNotPresent({ content: 'todo B' }),
-      assertTodoPresent({ expectedContent: 'todo A' }),
+      assertTodoPresent({ value: 'todo A' }),
       assertTodoCount({ count: 1 }),
     ];
 
@@ -81,8 +81,8 @@ describe('editing', () => {
       doubleClickTodo({ value: 'todo A' }),
       typeInEditField({ oldValue: 'todo A', newValue: 'updated todo A' }),
       keyInEditField({ value: 'updated todo A', key: 'Escape' }),
-      assertTodoPresent({ expectedContent: 'todo A' }),
-      assertTodoPresent({ expectedContent: 'todo B' }),
+      assertTodoPresent({ value: 'todo A' }),
+      assertTodoPresent({ value: 'todo B' }),
       assertNotEditingTodo({ value: 'todo A' }),
       assertTodoNotPresent({ content: 'updated todo A' }),
     ]));
