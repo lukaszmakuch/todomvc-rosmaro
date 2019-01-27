@@ -1,8 +1,8 @@
-export default ({ content }) => ({ testContext }) => ({
+export default ({ value }) => ({ testContext }) => ({
   feed: { type: 'RENDER' },
   consume: ({ result }) => {
     const { queryByText } = testContext.render(result.data);
-    const todo = queryByText(content);
+    const todo = queryByText(value);
     expect(todo).toBeNull();
   },
 });

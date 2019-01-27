@@ -46,8 +46,8 @@ describe('clear completed', () => {
       clearCompletedInvisible,
 
       assertTodoActive({ value: 'todo A' }),
-      assertTodoNotPresent({ content: 'todo B' }),
+      assertTodoNotPresent({ value: 'todo B' }),
       assertTodoActive({ value: 'todo C' }),
-      assertTodoNotPresent({ content: 'todo D' }),
+      assertTodoNotPresent({ value: 'todo D' }),
     ]));
 });

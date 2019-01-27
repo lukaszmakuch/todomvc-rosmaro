@@ -50,9 +50,9 @@ describe('routing', () => {
 
       navigateToActive,
 
-      assertTodoNotPresent({ content: 'todo A' }),
+      assertTodoNotPresent({ value: 'todo A' }),
 
-      assertTodoNotPresent({ content: 'todo B' }),
+      assertTodoNotPresent({ value: 'todo B' }),
 
       assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
@@ -76,11 +76,11 @@ describe('routing', () => {
       assertTodoPresent({ value: 'todo B' }),
       assertTodoCompleted({ value: 'todo B' }),
 
-      assertTodoNotPresent({ content: 'todo C' }),
+      assertTodoNotPresent({ value: 'todo C' }),
 
-      assertTodoNotPresent({ content: 'todo D' }),
+      assertTodoNotPresent({ value: 'todo D' }),
 
-      assertTodoNotPresent({ content: 'todo E' }),
+      assertTodoNotPresent({ value: 'todo E' }),
     ]));
 
   it('preserves todos between tabs', () =>
@@ -123,13 +123,13 @@ describe('routing', () => {
       addTodo({ value: 'new todo' }),
       // The todo is not present, because we added it on the "completed" tab
       // and every new todo is active.
-      assertTodoNotPresent({ content: 'new todo' }),
+      assertTodoNotPresent({ value: 'new todo' }),
 
       navigateToActive,
 
-      assertTodoNotPresent({ content: 'todo A' }),
+      assertTodoNotPresent({ value: 'todo A' }),
 
-      assertTodoNotPresent({ content: 'todo B' }),
+      assertTodoNotPresent({ value: 'todo B' }),
 
       assertTodoPresent({ value: 'todo C' }),
       assertTodoActive({ value: 'todo C' }),
@@ -146,7 +146,7 @@ describe('routing', () => {
 
       toggleTodo({ value: 'new todo' }),
 
-      assertTodoNotPresent({ content: 'new todo' }),
+      assertTodoNotPresent({ value: 'new todo' }),
 
       navigateToAll,
 

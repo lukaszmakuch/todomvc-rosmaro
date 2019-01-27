@@ -21,7 +21,7 @@ test('removing a todo', () =>
 
     clickDestroy({ todo: 'todo B' }),
 
-    assertTodoNotPresent({ content: 'todo B' }),
+    assertTodoNotPresent({ value: 'todo B' }),
 
     assertTodoPresent({ value: 'todo C' }),
     assertTodoActive({ value: 'todo C' }),

@@ -55,7 +55,7 @@ describe('editing', () => {
     ];
 
     const assertTodoRemoved = [
-      assertTodoNotPresent({ content: 'todo B' }),
+      assertTodoNotPresent({ value: 'todo B' }),
       assertTodoPresent({ value: 'todo A' }),
       assertTodoCount({ count: 1 }),
     ];
@@ -84,6 +84,6 @@ describe('editing', () => {
       assertTodoPresent({ value: 'todo A' }),
       assertTodoPresent({ value: 'todo B' }),
       assertNotEditingTodo({ value: 'todo A' }),
-      assertTodoNotPresent({ content: 'updated todo A' }),
+      assertTodoNotPresent({ value: 'updated todo A' }),
     ]));
 });
